@@ -1,0 +1,34 @@
+<%- include('includes/header.ejs')%>
+
+<h1>我的产品</h1>
+<% if(prods.length>0){ %>
+<div class="row">
+    <% for (let i of prods){ %>
+
+    <div class="col-md-4 p-2">
+        <div class="card" style="width: 18rem">
+            <img
+                src="https://miro.medium.com/max/1200/1*m5RYM_Wkj4LsZewpigV5tg.jpeg"
+                class="card-img-top"
+                alt="..." />
+            <div class="card-body">
+                <h5 class="card-title"><%= i.title %></h5>
+                <p class="card-text"><%= i.description %></p>
+                <p><%= i.price %></p>
+                <div class="row">
+                    <!-- FIXME:會增加個別商品編號 -->
+                    <a href="./edit-product" class="btn btn-primary mr-2"
+                        >產品修改</a
+                    >
+                    <form action="./delete-product" method="post">
+                        <button class="btn btn-danger">產品刪除</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+<% } else {%>
+<div class="alert alert-danger" role="alert">暂无产品</div>
+<% }%> <%- include('includes/footer.ejs')%>
