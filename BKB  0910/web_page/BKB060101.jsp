@@ -16,17 +16,32 @@
 
 
 <%
-// TODO:連線資料庫
+// TODO: 
+// 頁面:新增庫存管理
+// 1.新增資料:
+// 	表BKA008
+// 	接收值BKA008001:若為空值，FTYPE為"A"，帶當前頁面至BKB006103新增資料
+// 2.資料編輯:BKA008002-BKA008004若有放資料->有條件查詢
+// 	表BKA008
+// 	接收值BKA008001:若有值，FTYPE為"U"，SQL查詢依BKA008001查詢原資料，帶至BKA008002-BKA008009資料 當前頁面至BKB006103新增資料
+// 3.表單傳遞:
+// 	FTYPE:新增->"A"，編輯->"U"
+// 	FIXME:新增完成了，但更新抱錯(這邊我的邏輯是BKB006103會依照UUID值去做更新)
+// 	BKA008001:帶值到BKB006103新增/更新資料，
+// 	BKA008002-BKA008009:帶值到BKB006103新增/更新資料，
+
+
+// 連線資料庫
 Database DB01 = new Database("BK");
 Connection CONN01 = DB01.getConn();
 Table TAB01 = new Table(CONN01);
 Map[] RS01 = null;
 String SQL01 = "";
-
-// TODO:接值&宣告
 String table="BKA008"; //要連接的資料表
 String FTYPE=SQLIJ(request.getParameter("FTYPE"));
 
+
+// 接值
 String BKA008001 = SQLIJ(request.getParameter("BKA008001"));// 大類
 String BKA008002 = SQLIJ(request.getParameter("BKA008002"));// 大類
 String BKA008003 = SQLIJ(request.getParameter("BKA008003"));// 小類
@@ -37,10 +52,9 @@ String BKA008007 = SQLIJ(request.getParameter("BKA008007"));// 單位
 String BKA008008 = SQLIJ(request.getParameter("BKA008008"));// 描述
 String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 時間
 
+// 判斷是新增資料還是更新資料
 if(BKA008001.equals("")){
 	FTYPE="A";
-	
-
 }else{
 	FTYPE="U";
 	SQL01="SELECT * FROM BKA008 where BKA008001 = '"+BKA008001+"'";
@@ -69,7 +83,6 @@ if(BKA008001.equals("")){
 <form id="form1" name="form1" method="post" action="">
 <%-- NOTE: 隱藏表單--%>
 <input name="BKA008001" type="hidden" id="BKA008001" value="<%=BKA008001%>" /> 
-
 <input name="FTYPE" type="hidden" id="FTYPE" value="<%=FTYPE%>" /> 
 	<div class="container px-4">
 		<div class="d-flex justify-content-between">

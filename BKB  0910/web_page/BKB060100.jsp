@@ -14,9 +14,16 @@
 <%@ include file="../web_script/WSA010500.jsp"%>
 <%@ include file="../web_script/WSA010700.jsp"%>
 
-
 <%
-// NOTE:連線資料庫
+//TODO: 
+// 頁面:呈現庫存管理
+// 1.呈現資料:表BKA008拉資料BKA008002-BKA008009->無條件查詢
+// 2.資料查詢:BKA008002-BKA008004若有放資料->有條件查詢
+// 3.表單傳遞:
+// 	BKA008001:新增->有值，編輯->有值
+
+
+// 連線資料庫
 Database DB01 = new Database("BK");
 Connection CONN01 = DB01.getConn();
 Table TAB01 = new Table(CONN01);
@@ -25,11 +32,10 @@ String SQL01 = "";
 Map[] RS02 = null;
 String SQL02 = "";
 String FTYPE="";
-
-
-
-// NOTE: 接值
 String table="BKA008"; //要連接的資料表
+
+
+// 接值
 String BKA008001 = SQLIJ(request.getParameter("BKA008001"));// 大類
 String BKA008002 = SQLIJ(request.getParameter("BKA008002"));// 大類
 String BKA008003 = SQLIJ(request.getParameter("BKA008003"));// 小類
@@ -40,8 +46,10 @@ String BKA008007 = SQLIJ(request.getParameter("BKA008007"));// 單位
 String BKA008008 = SQLIJ(request.getParameter("BKA008008"));// 描述
 String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 時間
 
-// 無條件查詢
+
+// 呈現資料
 if(BKA008002.equals("") && BKA008003.equals("") && BKA008004.equals("")){
+	// 無條件查詢
 	SQL01 = "SELECT * FROM " + table + " WHERE BKA008001 <> '' ORDER BY BKA008009";
 }else{
 	// 有條件查詢
@@ -49,9 +57,9 @@ if(BKA008002.equals("") && BKA008003.equals("") && BKA008004.equals("")){
     if (!BKA008002.equals("")) SQL01 += " AND BKA008002 = '" + BKA008002 + "'";
     if (!BKA008003.equals("")) SQL01 += " AND BKA008003 = '" + BKA008003 + "'";
     if (!BKA008004.equals("")) SQL01 += " AND BKA008004 LIKE '%" + BKA008004 + "%'";
-    // SQL01 +=" ORDER BY BKA008009";
+    SQL01 +=" ORDER BY BKA008009";
 }
-out.print(SQL01);
+// out.print(SQL01);
 RS01 = TAB01.buildMaps(SQL01);
 
 %>

@@ -16,7 +16,13 @@
 
 
 <%
-// NOTE:連線資料庫
+// TODO: 
+// 頁面:匯入物資存量
+// 1.呈現資料:
+// 	表BKA008拉資料BKA008002-BKA008009->無條件查詢
+
+
+// 連線資料庫
 Database DB01 = new Database("BK");
 Connection CONN01 = DB01.getConn();
 Table TAB01 = new Table(CONN01);
@@ -25,11 +31,9 @@ String SQL01 = "";
 Map[] RS02 = null;
 String SQL02 = "";
 String FTYPE="";
-
-
-
-// NOTE: 接值
 String table="BKA008"; //要連接的資料表
+
+// 接值
 String BKA008001 = SQLIJ(request.getParameter("BKA008001"));// 大類
 String BKA008002 = SQLIJ(request.getParameter("BKA008002"));// 大類
 String BKA008003 = SQLIJ(request.getParameter("BKA008003"));// 小類
@@ -40,9 +44,8 @@ String BKA008007 = SQLIJ(request.getParameter("BKA008007"));// 單位
 String BKA008008 = SQLIJ(request.getParameter("BKA008008"));// 描述
 String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 時間
 
-
 SQL01 = "SELECT * FROM " + table + " WHERE BKA008001 <> '' ORDER BY BKA008009";
-out.print(SQL01);
+// out.print(SQL01);
 RS01 = TAB01.buildMaps(SQL01);
 
 %>
@@ -97,7 +100,7 @@ RS01 = TAB01.buildMaps(SQL01);
 							  </thead>
 							  <tbody align="center">
 							  	<%
-									// TODO: 處裡迴圈，特殊字串部分
+									// 處裡迴圈，特殊字串部分
 									for(int i=0;i<RS01.length;i++){
 										String num=RS01[i].get("BKA008006").toString()+RS01[i].get("BKA008007").toString();
 								%>

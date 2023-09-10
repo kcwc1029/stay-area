@@ -12,14 +12,20 @@
 <%@ include file="../web_script/WSA010700.jsp"%>
 
 <%
+TODO: 
+// 1.新增公司內部紀錄:BKA008901-BKA008905
+//   依照傳遞過來的FTYPE值判斷新增/更新
+//   更新的話，BKA008902要取BKA008904的值
 
-// NOTE:連線資料庫
+
+// 連線資料庫
 Database DB01 = new Database("BK");
 Connection CONN01 = DB01.getConn();
 Table TAB01 = new Table(CONN01);
 Map[] RS01 = null;
 String SQL01="";
 String table="BKA008";
+
 
 String SENDURL = "../web_page/BKB060100.jsp";
 String FTYPE = SQLIJ(request.getParameter("FTYPE"));
@@ -34,9 +40,9 @@ String BKA008008 = SQLIJ(request.getParameter("BKA008008"));// 描述
 String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 時間
 String URA004_MSG ="";
 
-// TODO: 新增公司內部紀錄
+// 新增公司內部紀錄
 String BKA008901 = SQLIJ(request.getParameter("BKA008901"));// 
-String BKA008902 = SQLIJ(request.getParameter("BKA008902"));// 時間
+String BKA008902 = SQLIJ(request.getParameter("BKA008902"));// 
 String BKA008903 = SQLIJ(request.getParameter("BKA008903"));//
 String BKA008904 = SQLIJ(request.getParameter("BKA008904"));// 
 String BKA008905 = SQLIJ(request.getParameter("BKA008905"));// 內部其他資訊備註
