@@ -52,7 +52,7 @@ String BKA008005 = SQLIJ(request.getParameter("BKA008005"));// 型號
 String BKA008006 = SQLIJ(request.getParameter("BKA008006"));// 數量
 String BKA008007 = SQLIJ(request.getParameter("BKA008007"));// 單位
 String BKA008008 = SQLIJ(request.getParameter("BKA008008"));// 描述
-String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 時間
+String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 有效時間
 String BKA008901 = USERID;
 String BKA008902 = SC01;
 String BKA008903 = USERID;
@@ -184,10 +184,16 @@ if(BKA008001.equals("")){
 								<label for="BKA002003" class="form-label text-green fw-bold">單位<span class="text-danger ms-1">*</span></label>
 								<input type="text" class="form-control validate[required]" id="BKA008007" name="BKA008007" value="<%=BKA008007%>" placeholder="例如：瓶">
 							</div>
+							<div class="col-xl-3">
+								<label for="BKA002003" class="form-label text-green fw-bold">有效時間<span class="text-danger ms-1">*</span></label>
+								<input type="text" class="form-control validate[required] datepicker" id="BKA008009" name="BKA008009" value="<%=BKA008009%>" placeholder="日期：2022/11/01">
+							</div>
+							
 							<div class="col-xl-6">
 								<label for="BKA002003" class="form-label text-green fw-bold">描述說明</label>
 								<input type="text" class="form-control" id="BKA008008" name="BKA008008" value="<%=BKA008008%>" placeholder="請輸入描述說明">
 							</div>
+							
 						</div>
 						
 						<div class="row mt-4">

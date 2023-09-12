@@ -40,7 +40,7 @@ String BKA008005 = SQLIJ(request.getParameter("BKA008005"));// 型號
 String BKA008006 = SQLIJ(request.getParameter("BKA008006"));// 數量
 String BKA008007 = SQLIJ(request.getParameter("BKA008007"));// 單位
 String BKA008008 = SQLIJ(request.getParameter("BKA008008"));// 描述
-String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 時間
+String BKA008009 = SQLIJ(request.getParameter("BKA008009"));// 有效時間
 String URA004_MSG ="";
 
 // 新增公司內部紀錄
